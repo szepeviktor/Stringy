@@ -39,7 +39,7 @@ before_install:
   # Disable PHP extensions: mbstring, intl, iconv
   - |
     ls -l ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    cat ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    php --ini
     sed -i -e 's|^extension = \(mbstring\|intl\|iconv\)\.so$|# &|' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     ! php --ri mbstring
     ! php --ri intl
