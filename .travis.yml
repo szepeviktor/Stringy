@@ -7,17 +7,14 @@ os:
   - "linux"
 dist: "bionic"
 
-addons:
-  apt:
-    sources:
-      - sourceline: "ppa:ondrej/php"
-
 jobs:
   fast_finish: true
   include:
     - name: "PHP 7.4"
       addons:
         apt:
+          sources:
+            - sourceline: "ppa:ondrej/php"
           packages:
             - "php7.4-cli"
             - "php7.4-xdebug"
@@ -25,6 +22,8 @@ jobs:
     - name: "PHP 7.3"
       addons:
         apt:
+          sources:
+            - sourceline: "ppa:ondrej/php"
           packages:
             - "php7.3-cli"
             - "php7.3-xdebug"
@@ -32,6 +31,8 @@ jobs:
     - name: "PHP 7.2"
       addons:
         apt:
+          sources:
+            - sourceline: "ppa:ondrej/php"
           packages:
             - "php7.2-cli"
             - "php7.2-xdebug"
@@ -39,6 +40,8 @@ jobs:
     - name: "PHP 7.1"
       addons:
         apt:
+          sources:
+            - sourceline: "ppa:ondrej/php"
           packages:
             - "php7.1-cli"
             - "php7.1-xdebug"
@@ -46,6 +49,8 @@ jobs:
     - name: "PHP 7.0"
       addons:
         apt:
+          sources:
+            - sourceline: "ppa:ondrej/php"
           packages:
             - "php7.0-cli"
             - "php7.0-xdebug"
@@ -53,6 +58,8 @@ jobs:
     - name: "PHP 8.0"
       addons:
         apt:
+          sources:
+            - sourceline: "ppa:ondrej/php"
           packages:
             - "php8.0-cli"
             - "php8.0-xdebug"
