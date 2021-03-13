@@ -18,6 +18,7 @@ jobs:
           packages:
             - "php7.4-cli"
             - "php7.4-xdebug"
+            - "php7.4-xml"
 
     - name: "PHP 7.3"
       addons:
@@ -27,6 +28,7 @@ jobs:
           packages:
             - "php7.3-cli"
             - "php7.3-xdebug"
+            - "php7.3-xml"
 
     - name: "PHP 7.2"
       addons:
@@ -36,6 +38,7 @@ jobs:
           packages:
             - "php7.2-cli"
             - "php7.2-xdebug"
+            - "php7.2-xml"
 
     - name: "PHP 7.1"
       addons:
@@ -45,6 +48,7 @@ jobs:
           packages:
             - "php7.1-cli"
             - "php7.1-xdebug"
+            - "php7.1-xml"
 
     - name: "PHP 7.0"
       addons:
@@ -54,6 +58,7 @@ jobs:
           packages:
             - "php7.0-cli"
             - "php7.0-xdebug"
+            - "php7.0-xml"
 
     - name: "PHP 8.0"
       addons:
@@ -63,9 +68,11 @@ jobs:
           packages:
             - "php8.0-cli"
             - "php8.0-xdebug"
+            - "php8.0-xml"
 
     - name: "Static analysis"
       php: "7.1"
+      before_install: "skip"
       script:
         - "travis_retry composer require --no-interaction --dev phpstan/phpstan"
         - "vendor/bin/phpstan analyse"
