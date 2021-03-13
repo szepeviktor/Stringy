@@ -36,13 +36,9 @@ cache:
     - "${HOME}/.composer/cache"
 
 before_install:
-  - "echo DBG"
-  - "php -m"
-  - "find ~/.phpenv/versions/$(phpenv version-name)/etc/"
-  # Disable PHP extensions
-  - "phpenv config-rm mbstring.ini"
-  - "phpenv config-rm intl.ini"
-  - "phpenv config-rm iconv.ini"
+  # Disable PHP extensions: mbstring, intl, iconv
+  - |
+    sed -i -e 's|^extension = \(mbstring\|intl\|iconv\)\.so$|# &|' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - "mkdir -p build/logs"
   
 install: 
