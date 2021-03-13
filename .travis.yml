@@ -36,6 +36,9 @@ cache:
     - "${HOME}/.composer/cache"
 
 before_install:
+  - "echo DBG"
+  - "php -m"
+  - "find ~/.phpenv/versions/$(phpenv version-name)/etc/"
   # Disable PHP extensions
   - "phpenv config-rm mbstring.ini"
   - "phpenv config-rm intl.ini"
