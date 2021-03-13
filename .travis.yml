@@ -81,6 +81,9 @@ cache:
     - "${HOME}/.composer/cache"
 
 before_install:
+  - echo "PATH:$PATH"
+  - which -a php
+  - export PATH="/usr/bin:$PATH"
   # Verify disable PHP extensions
   - |
     ! php --ri mbstring
