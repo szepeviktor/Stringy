@@ -7,18 +7,50 @@ os:
   - "linux"
 dist: "bionic"
 
-php:
-  - "8.0"
-  - "7.4"
-  - "7.3"
-  - "7.2"
-  - "7.1"
+addons:
+  apt:
+    sources:
+      - sourceline: "ppa:ondrej/php"
 
 jobs:
   fast_finish: true
   include:
-    - php: "7.0"
-      dist: "xenial"
+    - name: "PHP 7.4"
+      addons:
+        packages:
+          - "php7.4-cli"
+          - "php7.4-xdebug"
+
+    - name: "PHP 7.3"
+      addons:
+        packages:
+          - "php7.3-cli"
+          - "php7.3-xdebug"
+
+    - name: "PHP 7.2"
+      addons:
+        packages:
+          - "php7.2-cli"
+          - "php7.2-xdebug"
+
+    - name: "PHP 7.1"
+      addons:
+        packages:
+          - "php7.1-cli"
+          - "php7.1-xdebug"
+
+    - name: "PHP 7.0"
+      addons:
+        packages:
+          - "php7.0-cli"
+          - "php7.0-xdebug"
+
+    - name: "PHP 8.0"
+      addons:
+        packages:
+          - "php8.0-cli"
+          - "php8.0-xdebug"
+
     - name: "Static analysis"
       php: "7.1"
       script:
@@ -26,7 +58,7 @@ jobs:
         - "vendor/bin/phpstan analyse"
       after_script: "skip"
   allow_failures:
-    - php: "8.0"
+    - name: "PHP 8.0"
 
 git:
   depth: 2
@@ -36,14 +68,8 @@ cache:
     - "${HOME}/.composer/cache"
 
 before_install:
-  # Disable PHP extensions: mbstring, intl, iconv
+  # Verify disable PHP extensions
   - |
-    php --ini
-    echo ___
-    cat ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-    echo ___
-    php -n -m
-    sed -i -e 's|^extension = \(mbstring\|intl\|iconv\)\.so$|# &|' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     ! php --ri mbstring
     ! php --ri intl
     ! php --ri iconv
