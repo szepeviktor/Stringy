@@ -39,6 +39,9 @@ before_install:
   # Disable PHP extensions: mbstring, intl, iconv
   - |
     sed -i -e 's|^extension = \(mbstring\|intl\|iconv\)\.so$|# &|' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    ! php --ri mbstring
+    ! php --ri intl
+    ! php --ri iconv
   - "mkdir -p build/logs"
   
 install: 
@@ -50,7 +53,7 @@ script:
 after_script:
   # Upload to Coveralls
   - "travis_retry composer require --no-interaction --prefer-source --dev php-coveralls/php-coveralls"
-  - "php vendor/bin/coveralls -v"
+  - "vendor/bin/php-coveralls -v"
   # Upload to Scrutinizer
   - "wget https://scrutinizer-ci.com/ocular.phar"
   - "php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml"
