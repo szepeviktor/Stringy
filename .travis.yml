@@ -89,7 +89,7 @@ cache:
 
 before_install:
   - |
-    rm -v ~/.phpenv/shims/php
+    ln -v -f -s /usr/bin/php ~/.phpenv/shims/php
     sudo /usr/sbin/phpdismod iconv
     echo "xdebug.mode = coverage" | sudo tee --append "$(php -r 'echo php_ini_loaded_file();')"
   # Verify disable PHP extensions
