@@ -88,8 +88,10 @@ cache:
     - "${HOME}/.composer/cache"
 
 before_install:
-  - rm -v ~/.phpenv/shims/php
-  - sudo /usr/sbin/phpdismod iconv
+  - |
+    rm -v ~/.phpenv/shims/php
+    sudo /usr/sbin/phpdismod iconv
+    echo "xdebug.mode = coverage" | sudo tee --append "$(php -r 'echo php_ini_loaded_file();')"
   # Verify disable PHP extensions
   - |
     ! php --ri iconv
@@ -105,8 +107,10 @@ script:
 
 after_script:
   # Upload to Coveralls
-  - "travis_retry composer require --no-interaction --prefer-source --dev php-coveralls/php-coveralls"
-  - "vendor/bin/php-coveralls -v"
+  ##- "travis_retry composer require --no-interaction --prefer-source --dev php-coveralls/php-coveralls"
+  ##- "vendor/bin/php-coveralls -v"
+  - "travis_retry composer require --no-interaction --prefer-source --dev satooshi/php-coveralls"
+  - "vendor/bin/coveralls -v"
   # Upload to Scrutinizer
   - "wget https://scrutinizer-ci.com/ocular.phar"
   - "php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml"
