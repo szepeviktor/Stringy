@@ -1,5 +1,8 @@
 # Changelog
 
+### 6.4.2 (2021-12-08)
+- update vendor (UTF-8)
+
 ### 6.4.1 (2021-04-07)
 - use Github Actions
 - use optimized phpdocs for phpstan
