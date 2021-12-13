@@ -2486,6 +2486,7 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
      *
      * @return string The current value of the $str property
      */
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return (string) $this;
@@ -3006,6 +3007,7 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         // Stringy is immutable, cannot directly set char
@@ -3026,6 +3028,7 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         // Don't allow directly modifying the string
