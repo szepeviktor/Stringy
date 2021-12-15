@@ -1,5 +1,8 @@
 # Changelog
 
+### 6.4.3 (2021-12-15)
+- fix PHP 8.1 compatibility -> thanks @boboldehampsink
+
 ### 6.4.2 (2021-12-08)
 - update vendor (UTF-8)
 
