@@ -1,5 +1,8 @@
 # Changelog
 
+### 6.4.4 (2021-12-21
+- fix PHP 8.1 compatibility v2 -> thanks @boboldehampsink
+
 ### 6.4.3 (2021-12-15)
 - fix PHP 8.1 compatibility -> thanks @boboldehampsink
 
