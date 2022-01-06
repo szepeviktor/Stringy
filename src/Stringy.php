@@ -49,8 +49,8 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
      * an InvalidArgumentException if the first argument is an array or object
      * without a __toString method.
      *
-     * @param mixed  $str      [optional] <p>Value to modify, after being cast to string. Default: ''</p>
-     * @param string $encoding [optional] <p>The character encoding. Fallback: 'UTF-8'</p>
+     * @param scalar|object  $str [optional] <p>Value to modify, after being cast to string. Default: ''</p>
+     * @param string $encoding    [optional] <p>The character encoding. Fallback: 'UTF-8'</p>
      *
      * @throws \InvalidArgumentException
      *                                   <p>if an array or object without a
@@ -60,6 +60,7 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
      */
     public function __construct($str = '', string $encoding = null)
     {
+        /* @phpstan-ignore-next-line | always false in theory */
         if (\is_array($str)) {
             throw new \InvalidArgumentException(
                 'Passed value cannot be an array'
@@ -2942,6 +2943,57 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
         );
 
         return new static(\implode('', $matches[1] ?? []), $this->encoding);
+    }
+
+    /**
+     * Returns the integer value of the current string.
+     *
+     * EXAMPLE: <code>
+     * s('foo1 ba2r')->extractIntegers(); // '12'
+     * </code>
+     *
+     * @psalm-mutation-free
+     *
+     * @return static
+     */
+    public function extractIntegers(): self
+    {
+        if ($this->str === '') {
+            return new static('', $this->encoding);
+        }
+
+        \preg_match_all('/(?<integers>\d+)/', $this->str, $matches);
+
+        return static::create(
+            \implode('', $matches['integers'] ?? []),
+            $this->encoding
+        );
+    }
+
+    /**
+     * Returns the special chars of the current string.
+     *
+     * EXAMPLE: <code>
+     * s('foo1 ba2!r')->extractSpecialCharacters(); // '!'
+     * </code>
+     *
+     * @psalm-mutation-free
+     *
+     * @return static
+     */
+    public function extractSpecialCharacters(): self
+    {
+        if ($this->str === '') {
+            return new static('', $this->encoding);
+        }
+
+        // no letter, no digit, no space
+        \preg_match_all('/((?![\p{L}0-9\s]+).)/u', $this->str, $matches);
+
+        return static::create(
+            \implode('', $matches[0] ?? []),
+            $this->encoding
+        );
     }
 
     /**

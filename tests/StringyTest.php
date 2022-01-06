@@ -2796,6 +2796,23 @@ final class StringyTest extends \PHPUnit\Framework\TestCase
         static::assertFalse($stringy->isSimilar('abcdefgh-öäü', 80));
     }
 
+    public function testIsBinary()
+    {
+        $stringy = S::create(0x00);
+        $result = $stringy->isBinary();
+        static::assertTrue(\is_bool($result));
+        static::assertSame(true, $result);
+        static::assertSame('0', $stringy->toString());
+
+        // --
+
+        $stringy = S::create('a');
+        $result = $stringy->isBinary();
+        static::assertTrue(\is_bool($result));
+        static::assertSame(false, $result);
+        static::assertSame('a', $stringy->toString());
+    }
+
     /**
      * @dataProvider isBlankProvider()
      *
@@ -5565,6 +5582,50 @@ final class StringyTest extends \PHPUnit\Framework\TestCase
         $decrypted = $string->decrypt('任天堂');
         static::assertInstanceOf(\Stringy\Stringy::class, $decrypted);
         static::assertEquals('宮本 茂', $decrypted);
+    }
+
+    public function testExtractIntegers()
+    {
+        $intString = (new \Stringy\Stringy('宮1本 茂2.3'))->extractIntegers();
+
+        static::assertInstanceOf(\Stringy\Stringy::class, $intString);
+        static::assertEquals('123', $intString);
+
+        // --
+
+        $intString = (new \Stringy\Stringy('宮本 茂'))->extractIntegers();
+
+        static::assertInstanceOf(\Stringy\Stringy::class, $intString);
+        static::assertEquals('', $intString);
+
+        // --
+
+        $intString = (new \Stringy\Stringy(''))->extractIntegers();
+
+        static::assertInstanceOf(\Stringy\Stringy::class, $intString);
+        static::assertEquals('', $intString);
+    }
+
+    public function testExtractSpecialCharacters()
+    {
+        $str = (new \Stringy\Stringy('宮!1本 *?茂2.3'))->extractSpecialCharacters();
+
+        static::assertInstanceOf(\Stringy\Stringy::class, $str);
+        static::assertEquals('!*?.', $str);
+
+        // --
+
+        $str = (new \Stringy\Stringy('宮本 茂'))->extractSpecialCharacters();
+
+        static::assertInstanceOf(\Stringy\Stringy::class, $str);
+        static::assertEquals('', $str);
+
+        // --
+
+        $str = (new \Stringy\Stringy(''))->extractSpecialCharacters();
+
+        static::assertInstanceOf(\Stringy\Stringy::class, $str);
+        static::assertEquals('', $str);
     }
 
     public function testItPreservesEncodingDecrypt()

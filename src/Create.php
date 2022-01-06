@@ -6,8 +6,8 @@ if (!\function_exists('Stringy\create')) {
     /**
      * Creates a Stringy object and returns it on success.
      *
-     * @param mixed  $str      Value to modify, after being cast to string
-     * @param string $encoding The character encoding
+     * @param scalar|object $str      Value to modify, after being cast to string
+     * @param string        $encoding The character encoding
      *
      * @throws \InvalidArgumentException if an array or object without a
      *                                   __toString method is passed as the first argument
