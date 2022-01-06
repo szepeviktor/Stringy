@@ -1,5 +1,11 @@
 # Changelog
 
+### 6.5.0 (2022-01-06)
+- add "extractIntegers()"
+- add "extractSpecialCharacters()"
+- add more tests
+- fixed some "mixed" phpdocs
+
 ### 6.4.4 (2021-12-21
 - fix PHP 8.1 compatibility v2 -> thanks @boboldehampsink
 
