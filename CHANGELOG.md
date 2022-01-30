@@ -1,5 +1,8 @@
 # Changelog
 
+### 6.5.1 (2022-01-30)
+- optimize phpdoc for "titleize"
+
 ### 6.5.0 (2022-01-06)
 - add "extractIntegers()"
 - add "extractSpecialCharacters()"
