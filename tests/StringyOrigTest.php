@@ -777,7 +777,7 @@ final class StringyOrigTest extends \PHPUnit\Framework\TestCase
             [' TEST ', ' ŤÉŚŢ '],
             ['f = z = 3', 'φ = ź = 3'],
             ['perevirka', 'перевірка'],
-            ['ly\'saya gora', 'лысая гора'],
+            ['lysaia gora', 'лысая гора'],
             ['user@host', 'user@host'],
             ['shhuka', 'щука'],
             ['', '漢字'],
@@ -1339,9 +1339,9 @@ final class StringyOrigTest extends \PHPUnit\Framework\TestCase
             ['user-at-host', 'user@host'],
             ['using-strings-like-foo-bar', 'Using strings like fòô bàř'],
             ['numbers-1234', 'numbers 1234'],
-            ['perevirka-ryadka', 'перевірка рядка'],
+            ['perevirka-riadka', 'перевірка рядка'],
             ['bukvar-s-bukvoi-y', 'букварь с буквой ы'],
-            ['podexal-k-podezdu-moego-doma', 'подъехал к подъезду моего дома'],
+            ['podieexal-k-podieezdu-moego-doma', 'подъехал к подъезду моего дома'],
             ['foo:bar:baz', 'Foo bar baz', ':'],
             ['a_string_with_underscores', 'A_string with_underscores', '_'],
             ['a_string_with_dashes', 'A string-with-dashes', '_'],
@@ -1356,7 +1356,7 @@ final class StringyOrigTest extends \PHPUnit\Framework\TestCase
         $obj = new S();
         $array = $charsArray->invoke($obj);
 
-        static::assertSame(['य', 'Я'], $array['Ya']);
+        static::assertSame(['य'], $array['Ya']);
     }
 
     /**
