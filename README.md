@@ -365,7 +365,7 @@ see the documentation for the create method above.
 </td><td><a href="#surroundstring-substring-static">surround</a>
 </td><td><a href="#swapcase-static">swapCase</a>
 </td><td><a href="#tidy-static">tidy</a>
-</td></tr><tr><td><a href="#titleizearraystringnull-ignore-stringnull-word_define_chars-stringnull-language-static">titleize</a>
+</td></tr><tr><td><a href="#titleizestringnull-ignore-stringnull-word_define_chars-stringnull-language-static">titleize</a>
 </td><td><a href="#titleizeforhumansstring-ignore-static">titleizeForHumans</a>
 </td><td><a href="#toasciistring-language-bool-removeunsupported-static">toAscii</a>
 </td><td><a href="#toboolean-bool">toBoolean</a>
@@ -3433,7 +3433,7 @@ __nothing__
 
 --------
 
-## titleize(array|string[]|null $ignore, string|null $word_define_chars, string|null $language): static
+## titleize(string[]|null $ignore, string|null $word_define_chars, string|null $language): static
 <a href="#voku-php-readme-class-methods">↑</a>
 Returns a trimmed string with the first letter of each word capitalized.
 
@@ -3446,7 +3446,7 @@ s('i like to watch television')->titleize($ignore); // 'I Like to Watch Televisi
 </code>
 
 **Parameters:**
-- `array|string[]|null $ignore [optional] <p>An array of words not to capitalize or null.
+- `string[]|null $ignore [optional] <p>An array of words not to capitalize or null.
 Default: null</p>`
 - `string|null $word_define_chars [optional] <p>An string of chars that will be used as whitespace
 separator === words.</p>`
