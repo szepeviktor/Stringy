@@ -1,5 +1,8 @@
 # Changelog
 
+### 6.5.2 (2022-01-30)
+- update vendor (ASCII)
+
 ### 6.5.1 (2022-01-30)
 - optimize phpdoc for "titleize"
 
