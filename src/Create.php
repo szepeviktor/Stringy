@@ -6,7 +6,7 @@ if (!\function_exists('Stringy\create')) {
     /**
      * Creates a Stringy object and returns it on success.
      *
-     * @param scalar|object $str      Value to modify, after being cast to string
+     * @param object|scalar $str      Value to modify, after being cast to string
      * @param string        $encoding The character encoding
      *
      * @throws \InvalidArgumentException if an array or object without a

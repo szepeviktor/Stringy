@@ -49,8 +49,8 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
      * an InvalidArgumentException if the first argument is an array or object
      * without a __toString method.
      *
-     * @param scalar|object  $str [optional] <p>Value to modify, after being cast to string. Default: ''</p>
-     * @param string $encoding    [optional] <p>The character encoding. Fallback: 'UTF-8'</p>
+     * @param object|scalar $str      [optional] <p>Value to modify, after being cast to string. Default: ''</p>
+     * @param string        $encoding [optional] <p>The character encoding. Fallback: 'UTF-8'</p>
      *
      * @throws \InvalidArgumentException
      *                                   <p>if an array or object without a
@@ -4331,11 +4331,11 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
      * s('i like to watch television')->titleize($ignore); // 'I Like to Watch Television'
      * </code>
      *
-     * @param array|string[]|null $ignore            [optional] <p>An array of words not to capitalize or null.
-     *                                               Default: null</p>
-     * @param string|null         $word_define_chars [optional] <p>An string of chars that will be used as whitespace
-     *                                               separator === words.</p>
-     * @param string|null         $language          [optional] <p>Language of the source string.</p>
+     * @param string[]|null $ignore            [optional] <p>An array of words not to capitalize or null.
+     *                                         Default: null</p>
+     * @param string|null   $word_define_chars [optional] <p>An string of chars that will be used as whitespace
+     *                                         separator === words.</p>
+     * @param string|null   $language          [optional] <p>Language of the source string.</p>
      *
      * @psalm-mutation-free
      *
@@ -5080,7 +5080,7 @@ class Stringy implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSeri
      * @psalm-mutation-free
      *
      * @return array<string, array<int, string>>
-     *                       <p>An array of replacements.</p>
+     *                                           <p>An array of replacements.</p>
      *
      * @deprecated   this is only here for backward-compatibly reasons
      */

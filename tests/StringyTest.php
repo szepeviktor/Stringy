@@ -2801,7 +2801,7 @@ final class StringyTest extends \PHPUnit\Framework\TestCase
         $stringy = S::create(0x00);
         $result = $stringy->isBinary();
         static::assertTrue(\is_bool($result));
-        static::assertSame(true, $result);
+        static::assertTrue($result);
         static::assertSame('0', $stringy->toString());
 
         // --
@@ -2809,7 +2809,7 @@ final class StringyTest extends \PHPUnit\Framework\TestCase
         $stringy = S::create('a');
         $result = $stringy->isBinary();
         static::assertTrue(\is_bool($result));
-        static::assertSame(false, $result);
+        static::assertFalse($result);
         static::assertSame('a', $stringy->toString());
     }
 
