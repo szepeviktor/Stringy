@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.9.0
+        uses: shivammathur/setup-php@2.30.4
         with:
           php-version: ${{ matrix.php }}
           coverage: xdebug
